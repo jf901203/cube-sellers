@@ -98,7 +98,6 @@ data() {
 },
 methods:{
   selectorFood(food){
-  
    this.foods=food
    this._foodDetail()
    this._shopCartStiky()

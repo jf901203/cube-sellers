@@ -1,5 +1,5 @@
 <template>
-   <cube-scroll ref="scroll" class="scroll">
+   <cube-scroll ref="scroll" class="scroll" :options="options">
       <div class="ratings_container">
           <div class="ratings_content">
             <div class="ratings_code">
@@ -103,7 +103,11 @@ data() {
 return {
   selecType:2,
   isShow:false,
-  down:true
+  // down:true,
+  // 原生better-scroll中的options配置 options传递给better-scroll插件
+  options:{
+    click:false
+  }
 }
 },
 
@@ -111,33 +115,29 @@ props:['data'],
 
 methods:{
   selecTypes(num){
-    if(this.down){
-      this.down =false
-      setTimeout(()=>{
-        this.down =true
-      },500)
+  //   if(this.down){
+  //     this.down =false
+  //     setTimeout(()=>{
+  //       this.down =true
+  //     },500)
     this.selecType=num
-  }
-  
-  
   },
+  
 
 // 解决自身调用两次的方法
   tick(){
-    if(this.down){
-      this.down =false
-      setTimeout(()=>{
-        this.down =true
-      },500)
-      this.isShow=!this.isShow
-    }
+    // if(this.down){
+    //   this.down =false
+    //   setTimeout(()=>{
+    //     this.down =true
+    //   },500)
+    //   this.isShow=!this.isShow
+    // }
+
+   this.isShow=!this.isShow
     
   }
 
-},
-
-mounted () {
-  console.log(this.agreeCount)
 },
 
 computed:{

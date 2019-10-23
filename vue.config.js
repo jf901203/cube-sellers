@@ -28,12 +28,14 @@ module.exports = {
     }
   },
   devServer: {
-    // app是express
+    // app是express 后端的路由对应的是一个处理http请求的回调函数
     before(app) {
       app.get('/api/seller', (req, res) => {
+
+          const id =req.query.id
           res.json({
               code: 0,
-              data: seller
+              data: Object.assign({},seller,{id})
           })
       })
       app.get('/api/goods', (req, res) => {

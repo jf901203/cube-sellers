@@ -12,12 +12,14 @@ import {
 
 
 
+
+
 export default{
   async getSeller({commit}){
+
     const res=await reqSeller()
     if(res.code===0){
       const sellers=res.data
-     
       commit(RECIVE_SELLERS,{sellers})
     }
   },

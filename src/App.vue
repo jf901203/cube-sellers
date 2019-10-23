@@ -15,14 +15,17 @@ import Ratings from 'components/Ratings/Ratings'
 import Goods from 'components/Goods/Goods'
 import Sellers from 'components/Sellers/Sellers'
 
+
+
 import { mapState,mapActions } from "vuex";
 export default {
   data() {
     return {
-
+      
     }
   },
   mounted(){
+    
    this.getSeller()
    this.getGoods()
    this.getRatings()

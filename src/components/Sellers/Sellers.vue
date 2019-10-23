@@ -1,5 +1,5 @@
 <template>
-<cube-scroll>
+<cube-scroll :options="options">
   <div class="sellers_container">
      <div class="sellers_content">
         <div class="sellers_head">
@@ -13,11 +13,11 @@
               <span class="sellers_num">月售{{sellers.sellCount}}单</span>
             </div>
           </div>
-          <div class="head_right">
+          <div class="head_right" @click="likes">
             <div>
-              <span class="iconfont icon-dianzan8 dianzan8"></span>
+              <span class="iconfont icon-dianzan8 dianzan8" :class="{favorite}"></span>
             </div>
-            <div class="cang">收藏</div>
+            <div class="cang">{{collect}}</div>
           </div>
         </div>
         <div class="sellers_delivery">
@@ -97,19 +97,42 @@ import Start from 'components/Start/Start'
 import spaceLine from 'components/spaceLine/spaceLine'
 import scroll from 'components/scroll/scroll'
 import {mapState} from 'vuex'
+
+import storage from 'common/js'
+import { setTimeout } from 'timers';
+
 export default {
 data() {
 return {
   supports:['jian','zhe','te','piao','bao'],
-  direction:'horizontal'
+  direction:'horizontal',
+  options:{
+    click:false
+  },
+  favorite:false
 }
 },
 
+mounted() {
+ setTimeout(()=>{
+  
+  this.favorite=storage.readTodos(this.sellers.id,'favorite')
+
+ },300)
+},
+
 computed:{
-  ...mapState(['sellers'])
+  ...mapState(['sellers']),
+  collect(){
+    const {favorite}=this
+    return favorite ? '已收藏':'收藏'
+  }
 },
 methods:{
-  
+  likes(){
+    this.favorite=!this.favorite
+    storage.saveTodos(this.sellers.id,'favorite',this.favorite)
+  }
 },
 components:{
   Start,
@@ -169,6 +192,8 @@ components:{
           font-size .64rem
           color rgb(77,85,93)
           line-height .266667rem
+          &.favorite
+            color red
         .cang
             font-size .266667rem
             color rgb(77,85,93)

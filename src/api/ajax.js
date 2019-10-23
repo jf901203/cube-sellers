@@ -11,6 +11,7 @@ export default function ajax(url='',params={},type="GET"){
       if(dataStr!==''){
         dataStr=dataStr.substr(0,dataStr.lastIndexOf('&'))
         url+='?'+dataStr
+       
       }
       promise=axios.get(url)
     }else{
