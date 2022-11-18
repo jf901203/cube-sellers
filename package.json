@@ -21,7 +21,7 @@
   "commentx": "开发环境依赖 --save-dev",
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.11.0",
-    "@vue/cli-service": "^3.11.0",
+    "@vue/cli-service": "^5.0.8",
     "postcss-px-to-viewport": "^0.0.3",
     "postcss-px2rem": "^0.3.0",
     "query-string": "^6.8.3",
